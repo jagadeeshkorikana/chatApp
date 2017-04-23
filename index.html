@@ -17,7 +17,7 @@
   <body>
     <div class="container">
     	<div id="userFormArea" class="row">
-    		<div class="col-md-12">
+    		<div class="col-md-8">
     			<form id="userForm">
     				<div class="form-group">
     				<label>Enter Username</label>
@@ -30,18 +30,18 @@
 
 
     	<div id="messageArea" class="row">
-    			<!--<div class="col-md-4">
-    				<div class="well">
-    					<h3>Online Users</h3>
+    			<div class="col-md-2" style="padding:5px">
+    				<div class="well" style="padding: 1px 15px;">
+    					<h5><b>Online Users</b></h5>
     					<ul class="list-group" id="users"></ul>
     				</div>
-    			</div>-->
+    			</div>
     			<div class="col-md-8">
     				<div class="chat" id="chat"></div>
     				<form id="messageForm">
     					<div class="form-group">
     					<label>Enter Message</label>
-    					<textarea class="form-control" id="message"></textarea>
+    					<textarea rows='1' cols='1' class="form-control" id="message"></textarea>
     					</div>
     					<input type="submit" class="btn btn-primary" value="Send Message"/>
     				</form>
@@ -68,7 +68,7 @@
    			});
    	
    		socket.on('new message',function(data){
-    	$chat.append('<div class="well">'+'<strong>'+data.user+'</strong>: '+data.msg+'</div>');
+    	$chat.append('<div class="well" style="padding:3px">'+'<strong>'+data.user+'</strong>: '+data.msg+'</div>');
     	});
     	
     	$userForm.submit(function(e){
@@ -81,7 +81,7 @@
     		});
     			$username.val('');
    			});
-    	socket.io('get users',function(data){
+    	socket.on('get users',function(data){
     		var html='';
     		for(i=0;i<data.length;i++){
     			html+='<li class="list-group-item">'+data[i]+'</li>';
